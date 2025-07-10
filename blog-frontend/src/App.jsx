@@ -1,17 +1,19 @@
+import { BrowserRouter } from 'react-router-dom'
+import BlogRoutes from './routes/BlogRoutes'
 import './App.css'
-import NewPost from './pages/NewPost/NewPost'
 
-function App() {
-
+function App () {
   return (
     <>
-      <div className='app'>
-        <main className='app-main'>
-          <div className='container'>
-            <NewPost />
-          </div>
-        </main>
-      </div>
+      <BrowserRouter>
+        <div className='app'>
+          <main className='app-main'>
+            <div className='container'>
+              <BlogRoutes />
+            </div>
+          </main>
+        </div>
+      </BrowserRouter>
 
       <footer className='app-footer'>
         <div className='container'>
