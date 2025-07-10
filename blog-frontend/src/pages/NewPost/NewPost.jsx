@@ -8,11 +8,11 @@ const NewPost = () => {
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(postSchema),
     defaultValues: {
-        title: '',
-        content: '',
-        category: '',
-        author: '',
-        publishDate: ''
+      title: '',
+      content: '',
+      category: '',
+      author: '',
+      publishDate: ''
     }
   })
 
@@ -23,11 +23,11 @@ const NewPost = () => {
       console.log('Datos del post:', data)
       toast.success(
         <div>
-            <h3>¡Post creado exitosamente!</h3>
-            <p>Título: {data.title}</p>
-            <p>Autor: {data.author}</p>
-            <p>Categoría: {data.category}</p>
-            <p>Fecha: {new Date(data.publishDate).toLocaleString()}</p>
+          <h3>¡Post creado exitosamente!</h3>
+          <p>Título: {data.title}</p>
+          <p>Autor: {data.author}</p>
+          <p>Categoría: {data.category}</p>
+          <p>Fecha: {new Date(data.publishDate).toLocaleString()}</p>
         </div>,
         { closeButton: true, autoClose: 5000, position: 'top-right' }
       )
@@ -36,9 +36,9 @@ const NewPost = () => {
       console.error('Error al crear el post:', error)
       toast.error(
         <div>
-            <h3>Error al crear el post</h3>
-            <p>Ha ocurrido un error:</p>
-            <p>{error.message}</p>
+          <h3>Error al crear el post</h3>
+          <p>Ha ocurrido un error:</p>
+          <p>{error.message}</p>
         </div>,
         { closeButton: true, autoClose: 5000, position: 'top-right' }
       )
