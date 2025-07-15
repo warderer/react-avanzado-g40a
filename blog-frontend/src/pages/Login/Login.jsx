@@ -2,9 +2,12 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { loginSchema } from '../../schemas/Login'
 import { toast, ToastContainer } from 'react-toastify'
+import { useAuthContext } from '../../hooks/useAuth'
 import './Login.css'
 
 const Login = () => {
+  const { login } = useAuthContext()
+
   const {
     register,
     handleSubmit,
@@ -19,9 +22,16 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      // Simular petición de login
-      await new Promise(resolve => setTimeout(resolve, 1000))
       console.log('Datos de login:', data)
+
+      const users = await fetch('https://jsonplaceholder.typicode.com/users')
+      const usersData = await users.json()
+      const user = usersData.find(user => user.email === data.email)
+      if (!user) {
+        throw new Error('Usuario no encontrado')
+      }
+
+      login(user)
 
       // Mostrar mensaje de éxito
       toast.success('¡Inicio de sesión exitoso!', {
