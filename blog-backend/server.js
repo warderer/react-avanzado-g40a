@@ -1,5 +1,6 @@
 // #1 Importar express
 import express from 'express'
+import postsData from './data/posts.json' with { type: 'json' }
 
 // #2a Crear una instancia de express (app)
 const app = express()
@@ -14,6 +15,10 @@ app.use(express.urlencoded({ extended: true }))
 // #3 Definir rutas
 app.get('/', (req, res) => {
   res.send('Saludos G40A! 👋')
+})
+
+app.get('/api/v1/posts', (req, res) => {
+  res.json(postsData)
 })
 
 // #4 Levantar el servidor
