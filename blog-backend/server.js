@@ -1,10 +1,22 @@
-const http = require('http');
+// #1 Importar express
+import express from 'express'
 
-const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hola, mundo desde Node.js!');
-});
+// #2a Crear una instancia de express (app)
+const app = express()
+const port = process.env.PORT || 3000
 
-server.listen(3000, () => {
-    console.log('Servidor ejecutándose en http://localhost:3000');
-});
+// #2b Configurar express para que entienda JSON
+app.use(express.json())
+
+// #2c Configurar express para recibir datos de formularios
+app.use(express.urlencoded({ extended: true }))
+
+// #3 Definir rutas
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+// #4 Levantar el servidor
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port} 🚀`)
+})
