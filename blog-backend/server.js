@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 
 // #3 Definir rutas
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Saludos G40A! 👋')
 })
 
 // #4 Levantar el servidor
