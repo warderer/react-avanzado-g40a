@@ -1,4 +1,4 @@
-import { getPost, getPosts, createPost, updatePost } from '../models/Post.js'
+import { getPost, getPosts, createPost, updatePost, deletePost } from '../models/Post.js'
 
 // CREATE
 export const createOnePost = async (req, res) => {
@@ -52,3 +52,14 @@ export const updateOnePost = async (req, res) => {
 }
 
 // DELETE
+export const deleteOnePost = async (req, res) => {
+  try {
+    const sucess = await deletePost(req.params.id)
+    if (!sucess) {
+      return res.status(404).json({ message: 'Post not found' })
+    }
+    res.status(204).send() // No content
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting post', error: error.message })
+  }
+}

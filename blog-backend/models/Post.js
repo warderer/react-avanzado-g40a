@@ -41,3 +41,12 @@ export const updatePost = (id, postDataToUpdate) => {
 }
 
 // DELETE
+export const deletePost = (id) => {
+    const postIndex = postsData.findIndex(post => post.id === parseInt(id))
+    if (postIndex === -1) {
+        return null
+    }
+
+    postsData.splice(postIndex, 1)
+    return true
+}
