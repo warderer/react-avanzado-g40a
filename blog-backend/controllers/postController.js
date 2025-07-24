@@ -1,6 +1,19 @@
-import { getPost, getPosts } from '../models/Post.js'
+import { getPost, getPosts, createPost } from '../models/Post.js'
 
 // CREATE
+export const createOnePost = async (req, res) => {
+  try {
+    const postData = {
+      title: req.body.title,
+      body: req.body.body,
+      userId: req.body.userId
+    }
+    const newPost = await createPost(postData)
+    res.status(201).json(newPost)
+  } catch (error) {
+    res.status(400).json({ message: 'Error creating post', error: error.message })
+  }
+}
 
 // READ
 export const getAllPosts = async (req, res) => {
