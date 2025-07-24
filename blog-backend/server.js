@@ -1,7 +1,7 @@
 // #1 Importar express
 import express from 'express'
-import postsData from './data/posts.json' with { type: 'json' }
 import cors from 'cors'
+import postRoutes from './routes/postRoutes.js'
 
 // #2a Crear una instancia de express (app)
 const app = express()
@@ -27,6 +27,17 @@ app.get('/', (req, res) => {
       updatePost: 'PATCH /api/v1/posts/:id',
       deletePost: 'DELETE /api/v1/posts/:id'
     }
+  })
+})
+
+// Integrar las rutas de posts
+app.use('/api/v1/posts', postRoutes)
+
+// Manejo de errores 404
+app.use((req, res) => {
+  res.status(404).json({
+    message: 'Endpoint not found',
+    error: `La ruta ${req.originalUrl} no existe`
   })
 })
 
