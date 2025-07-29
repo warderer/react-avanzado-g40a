@@ -18,12 +18,12 @@ export const createPost = async (postData) => {
 }
 
 // READ
-export const getPosts = () => {
-//   return postsData
+export const getPosts = async () => {
+  return await Post.find().sort({ createdAt: -1 }) // Ordenar por fecha de creación descendente
 }
 
-export const getPost = (id) => {
-//   return postsData.find(post => post.id === parseInt(id))
+export const getPost = async (id) => {
+  return await Post.findById(id)
 }
 
 // UPDATE
