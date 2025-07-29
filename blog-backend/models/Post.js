@@ -37,12 +37,7 @@ export const updatePost = async (id, postDataToUpdate) => {
 }
 
 // DELETE
-export const deletePost = (id) => {
-//   const postIndex = postsData.findIndex(post => post.id === parseInt(id))
-//   if (postIndex === -1) {
-//     return null
-//   }
-
-//   postsData.splice(postIndex, 1)
-//   return true
+export const deletePost = async (id) => {
+  const result = await Post.findByIdAndDelete(id)
+  return !!result // Devuelve true si se eliminó, false si no se encontró
 }
