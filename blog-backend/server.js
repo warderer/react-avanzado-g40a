@@ -1,7 +1,11 @@
 // #1 Importar express
+import dotenv from 'dotenv'
 import express from 'express'
 import cors from 'cors'
 import postRoutes from './routes/postRoutes.js'
+import connectDB from './config/db.js'
+
+dotenv.config()
 
 // #2a Crear una instancia de express (app)
 const app = express()
@@ -40,6 +44,9 @@ app.use((req, res) => {
     error: `La ruta ${req.originalUrl} no existe`
   })
 })
+
+// Conectar a la base de datos
+connectDB()
 
 // #4 Levantar el servidor
 app.listen(port, () => {
