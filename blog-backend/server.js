@@ -17,8 +17,12 @@ app.use(express.json())
 // #2c Configurar express para recibir datos de formularios
 app.use(express.urlencoded({ extended: true }))
 
-// #2d Configurar CORS para permitir peticiones desde el frontend
-app.use(cors())
+// #2d Configurar CORS para permitir peticiones desde el frontend desde cualquier origen
+app.use(cors({
+  origin: '*', // Permitir todas las solicitudes CORS
+  methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'] // Encabezados permitidos
+}))
 
 // #3 Definir rutas
 app.get('/', (req, res) => {
