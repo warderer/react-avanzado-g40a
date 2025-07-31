@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react'
 import './home.css'
 
-const getRandomImageUrl = (postId) => {
-  const imageId = 100 + (postId % 1000) // Obtengo un ID de imagen entre 100 y 1099
-  return `https://picsum.photos/id/${imageId}/600/400`
-}
-
 const POSTS_PER_PAGE = 8
 
 const Home = () => {
@@ -18,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/v1/posts')
+        const response = await fetch('https://react-avanzado-g40a.onrender.com/api/v1/posts')
         if (!response.ok) {
           throw new Error('Error al cargar los posts')
         }
@@ -56,10 +51,10 @@ const Home = () => {
 
       <div className='posts-container'>
         {currentPosts.map(post => (
-          <article key={post.id} className='post-card'>
+          <article key={post._id} className='post-card'>
             <div className='post-image-container'>
               <img
-                src={getRandomImageUrl(post.id)}
+                src={post.imageUrl}
                 alt={`Imagen para ${post.title}`}
                 className='post-image'
                 loading='lazy'
